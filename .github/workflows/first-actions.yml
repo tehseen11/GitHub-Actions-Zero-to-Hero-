@@ -1,28 +1,25 @@
-name: My First GitHub Actions
+name: First GitHub Actions
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
-  build:
+  hello:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        python-version: [3.8, 3.9]
-
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.python-version }}
+      - name: Say Hello
+        run: echo "Hello from GitHub Actions!"
 
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install pytest
+      - name: Show system information
+        run: |
+          echo "Operating System:"
+          uname -a
 
-    - name: Run tests
-      run: |
-        cd src
-        python -m pytest addition.py
+          echo "Current user:"
+          whoami
+
+          echo "Current directory:"
+          pwd
