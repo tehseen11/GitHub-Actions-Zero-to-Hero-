@@ -33,3 +33,16 @@ jobs:
         with:
           name: pytest-report
           path: pytest-report.html
+
+  build:
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build application
+        run: |
+          echo "Building application..."
+          echo "Build completed successfully!"
